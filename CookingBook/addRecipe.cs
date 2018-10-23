@@ -12,13 +12,16 @@ namespace CookingBook
 {
     public partial class addRecipe : Form
     {
-        private Form logicalParent;
-        public int set;
+        public Form1 form;
+        public List<Product> products = new List<Product>();
+        public List<string> steps=new List<string>();
+        public bool edit = false;
+        public int set, editHelper;
         int pomWithCheck;
-        public addRecipe(Form parent)
+        public addRecipe(Form1 parentForm)
         {
             InitializeComponent();
-            logicalParent = parent;
+            form = parentForm;
             set = 1;
             addNewRecipe(set);
 
@@ -115,6 +118,150 @@ namespace CookingBook
         private void exitFromAddNewRecipe_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void addNextProductToTheListOfProduct(List<Product> products)
+        {
+            pomWithCheck = 0;
+            if (string.IsNullOrWhiteSpace(enterNameOfProduct.Text)) { MessageBox.Show("Wprowadz nazwę produktu."); pomWithCheck++; }
+            foreach(char i in enterAmountOfProduct.Text)
+            {
+                if (!char.IsNumber(i))
+                {
+                    MessageBox.Show("Wprowadz poprawna ilosc produktu.");
+                    pomWithCheck++;
+                    break;
+                }
+            }
+            if(setCategoryOfAmount.SelectedIndex == -1)
+            {
+                MessageBox.Show("Wybierz rodzaj ilosci produktów.");
+                pomWithCheck++;
+            }
+            if (pomWithCheck == 0)
+            {
+                products.Add(new Product(enterNameOfProduct.Text, int.Parse(enterAmountOfProduct.Text), setCategoryOfAmount.Text));
+                refreshListOfProduct(products);
+                clearTextForTheAddNewRecepie(this.enterProductPanel);
+            }
+        }
+
+        public void refreshListOfProduct(List<Product> products)
+        {
+            string str;
+            listOfProduct.Items.Clear();
+            foreach(Product p in products)
+            {
+                str = p.name + " " + p.amount + "" + p.unit;
+                listOfProduct.Items.Add(str);
+            }
+        }
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+            addNextProductToTheListOfProduct(products);
+        }
+
+        public void clearTextForTheAddNewRecepie(System.Windows.Forms.Panel b)
+        {
+            foreach(Control a in b.Controls)
+            {
+                if(a is TextBox)
+                {
+                    a.Text = "";
+                }else if(a is ComboBox)
+                {
+                    a.Text = "";
+                }
+            }
+        }
+
+        public void removeFromProductList(int numerOfPositionOnListOfProduct)
+        {
+            if (numerOfPositionOnListOfProduct >= 0 && numerOfPositionOnListOfProduct <= products.Count-1)
+            {
+                products.RemoveAt(numerOfPositionOnListOfProduct);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            removeFromProductList(listOfProduct.SelectedIndex);
+            refreshListOfProduct(products);
+        }
+
+        private void addSteps_Click(object sender, EventArgs e)
+        {
+            if (!edit)
+            {
+                pomWithCheck = 0;
+                if (string.IsNullOrWhiteSpace(enterStepsBox.Text))
+                {
+                    MessageBox.Show("Wprowadz jakiś tekst jako krok");
+                    pomWithCheck++;
+                }
+                else
+                {
+                    steps.Add(enterStepsBox.Text);
+                    refreshStepsListbox(steps);
+                    enterStepsBox.Text = "";
+                    edit = false;
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(enterStepsBox.Text))
+                {
+                    steps[editHelper] = enterStepsBox.Text;
+                    refreshStepsListbox(steps);
+                    enterStepsBox.Text = "";
+                    edit = false;
+                }
+                else
+                {
+                    steps.RemoveAt(editHelper);
+                    refreshStepsListbox(steps);
+                    edit = false;
+                }
+            }
+        }
+
+        public void refreshStepsListbox(List<string> steps)
+        {
+            string str;
+            listOfEnterSteps.Items.Clear();
+            foreach (string p in steps)
+            {
+                str = (listOfEnterSteps.Items.Count+1) +" ";
+                if (p.Length >= 25)
+                {
+                    for (int i = 0; i < 25; i++)
+                        str += p[i];
+                }
+                else
+                {
+                    for (int i = 0; i < p.Length; i++)
+                        str += p[i];
+                }
+                listOfEnterSteps.Items.Add(str);
+            }
+        }
+
+        private void editSelectedStep_Click(object sender, EventArgs e)
+        {
+            editHelper = listOfEnterSteps.SelectedIndex;
+            enterStepsBox.Text = steps[editHelper];
+            edit = true;
+        }
+
+        private void saveRecipe_Click(object sender, EventArgs e)
+        {
+           form.recipes.Add(new Recipe(enterNameOfRecipe.Text, products, steps, int.Parse(enterLevelOfHard.Text), int.Parse(enterTimeOfPrep.Text)));
+            form.recipes[0].saveToFile(form.recipes);
+            
+            form.loadRecipe();
+            this.Close();
+            
         }
     }
 }

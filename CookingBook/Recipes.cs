@@ -12,17 +12,17 @@ namespace CookingBook
     {
         public string nameOfDish;
         public List<Product> products = new List<Product>();
-        public List<String> stepsOfRecope;
+        public List<String> stepsOfRecipe = new List<string>();
         public int timeForPreparing;
         public int levelOfHard;
         public string category;
 
         public Recipe() { }
 
-        public void addSteps(string step)
-        {
-            stepsOfRecope.Add(step);
+        public Recipe(string n, List<Product> pr, List<string> str, int t, int l) {
+            nameOfDish = n; products = pr; stepsOfRecipe = str; timeForPreparing = t; levelOfHard = l;
         }
+        
 
         public void saveToFile(List<Recipe> recipes)
         {
@@ -30,7 +30,7 @@ namespace CookingBook
             System.IO.File.WriteAllText("Recipes.txt", json);
         }
 
-        public List<Recipe> readFromFile(string adress)
+        public List<Recipe> readFromFile()
         {
             List<Recipe> recipes = new List<Recipe>();
 
@@ -62,13 +62,12 @@ namespace CookingBook
     {
         public string name;
         public double amount;
-        public bool isItem;
         public string unit;
         //public string[] unit = { "szt", "g", "ml", "kg", "ml" };
         
         public Product() { }
         
-        public Product(string n,bool b, double am, string uni) { name = n; isItem = b; amount = am; unit = uni; }
+        public Product(string n, double am, string uni) { name = n; amount = am; unit = uni; }
 
         public void removeProductFromList(List<Product> listOfProduct, Product productForDelete)
         {

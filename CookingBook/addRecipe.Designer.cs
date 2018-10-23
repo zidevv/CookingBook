@@ -153,6 +153,7 @@
             this.saveRecipe.TabIndex = 4;
             this.saveRecipe.Text = "Zapisz Przepis";
             this.saveRecipe.UseVisualStyleBackColor = true;
+            this.saveRecipe.Click += new System.EventHandler(this.saveRecipe_Click);
             // 
             // editSelectedStep
             // 
@@ -163,6 +164,7 @@
             this.editSelectedStep.TabIndex = 3;
             this.editSelectedStep.Text = "Edytuj Ruch";
             this.editSelectedStep.UseVisualStyleBackColor = true;
+            this.editSelectedStep.Click += new System.EventHandler(this.editSelectedStep_Click);
             // 
             // addSteps
             // 
@@ -173,6 +175,7 @@
             this.addSteps.TabIndex = 2;
             this.addSteps.Text = "Dodaj Ruch";
             this.addSteps.UseVisualStyleBackColor = true;
+            this.addSteps.Click += new System.EventHandler(this.addSteps_Click);
             // 
             // listOfEnterSteps
             // 
@@ -214,6 +217,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Usuń Produkt z list";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // addProduct
             // 
@@ -224,6 +228,7 @@
             this.addProduct.TabIndex = 12;
             this.addProduct.Text = "Dodaj Produkt do list";
             this.addProduct.UseVisualStyleBackColor = true;
+            this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
             // 
             // listOfProduct
             // 
