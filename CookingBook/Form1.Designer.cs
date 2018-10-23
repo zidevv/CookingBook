@@ -107,6 +107,7 @@
             this.addNewRecipe.TabIndex = 6;
             this.addNewRecipe.Text = "Dodaj Nowy Przepis";
             this.addNewRecipe.UseVisualStyleBackColor = true;
+            this.addNewRecipe.Click += new System.EventHandler(this.addNewRecipe_Click);
             // 
             // removeRecipe
             // 

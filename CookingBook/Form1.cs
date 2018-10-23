@@ -13,11 +13,16 @@ namespace CookingBook
     
     public partial class Form1 : Form
     {
-        private Form logicalParent;
-        public Form1(Form parent)
+        
+        public Form1()
         {
             InitializeComponent();
-            logicalParent = parent;
+        }
+
+        private void addNewRecipe_Click(object sender, EventArgs e)
+        {
+            var form = new addRecipe(this);
+            form.Show();
         }
     }
 }
