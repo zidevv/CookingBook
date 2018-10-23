@@ -47,6 +47,7 @@
             this.listOfRecipe.Name = "listOfRecipe";
             this.listOfRecipe.Size = new System.Drawing.Size(217, 772);
             this.listOfRecipe.TabIndex = 0;
+            this.listOfRecipe.SelectedIndexChanged += new System.EventHandler(this.listOfRecipe_SelectedIndexChanged);
             // 
             // listOfSteps
             // 
@@ -118,6 +119,7 @@
             this.removeRecipe.TabIndex = 7;
             this.removeRecipe.Text = "Usuń Przepis";
             this.removeRecipe.UseVisualStyleBackColor = true;
+            this.removeRecipe.Click += new System.EventHandler(this.removeRecipe_Click);
             // 
             // Form1
             // 

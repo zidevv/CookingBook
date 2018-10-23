@@ -38,6 +38,55 @@ namespace CookingBook
             {
                 listOfRecipe.Items.Add(a.nameOfDish);
             }
+            if (listOfRecipe.Items.Count == 0)
+            {
+                nameOfRecipe.Text = "";
+                levelOfHard.Text = "";
+                timeOfPreparing.Text = "";
+                listOfProducts.Text = "";
+                listOfSteps.Text = "";
+            }
+            else
+            {
+                showSelected(0);
+            }
+        }
+
+        public void showSelected(int selected)
+        {
+            nameOfRecipe.Text = recipes[selected].nameOfDish;
+            levelOfHard.Text = recipes[selected].levelOfHard.ToString();
+            timeOfPreparing.Text = recipes[selected].timeForPreparing.ToString();
+            string pomString = "";
+            foreach(Product p in recipes[selected].products)
+            {
+                pomString += p.name + " " + p.amount + "" + p.unit + "\n";
+            }
+            listOfProducts.Text = pomString;
+            pomString = "";
+            foreach (string p in recipes[selected].stepsOfRecipe)
+            {
+                pomString += p +"\n\n";
+            }
+            listOfSteps.Text = pomString;
+        }
+
+        private void listOfRecipe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            showSelected(listOfRecipe.SelectedIndex);
+        }
+
+        private void removeRecipe_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Na pewno chcesz usunąć przepis?", "Pytanie", MessageBoxButtons.YesNo);
+            switch (dialog)
+            {
+                case DialogResult.Yes:
+                    recipes.RemoveAt(listOfRecipe.SelectedIndex);
+                    r.saveToFile(recipes);
+                    loadRecipe();
+                    break;
+            }
         }
     }
 }
