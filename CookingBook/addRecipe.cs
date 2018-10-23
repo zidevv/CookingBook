@@ -10,14 +10,12 @@ using System.Windows.Forms;
 
 namespace CookingBook
 {
-    
-    public partial class Form1 : Form
+    public partial class addRecipe : Form
     {
-        private Form logicalParent;
-        public Form1(Form parent)
+        public addRecipe()
         {
             InitializeComponent();
-            logicalParent = parent;
         }
+
     }
 }
