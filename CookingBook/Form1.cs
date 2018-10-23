@@ -45,6 +45,7 @@ namespace CookingBook
                 timeOfPreparing.Text = "";
                 listOfProducts.Text = "";
                 listOfSteps.Text = "";
+                category.Text = "";
             }
             else
             {
@@ -55,8 +56,8 @@ namespace CookingBook
         public void showSelected(int selected)
         {
             nameOfRecipe.Text = recipes[selected].nameOfDish;
-            levelOfHard.Text = recipes[selected].levelOfHard.ToString();
-            timeOfPreparing.Text = recipes[selected].timeForPreparing.ToString();
+            levelOfHard.Text = "Poziom trudności "+recipes[selected].levelOfHard.ToString();
+            timeOfPreparing.Text = "Czas "+recipes[selected].timeForPreparing.ToString()+" min";
             string pomString = "";
             foreach(Product p in recipes[selected].products)
             {
@@ -69,6 +70,7 @@ namespace CookingBook
                 pomString += p +"\n\n";
             }
             listOfSteps.Text = pomString;
+            category.Text = recipes[selected].category;
         }
 
         private void listOfRecipe_SelectedIndexChanged(object sender, EventArgs e)

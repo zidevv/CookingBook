@@ -78,6 +78,7 @@ namespace CookingBook
                         }
                     }
                     if (enterLevelOfHard.SelectedIndex==-1) { MessageBox.Show("Wprowadz poziom trudności."); pomWithCheck++; }
+                    if (enterCategory.SelectedIndex == -1) { MessageBox.Show("Wprowadz kategorie."); pomWithCheck++; }
                     break;
                 case 3:
                     if (listOfProduct.Items.Count == 0)
@@ -256,7 +257,7 @@ namespace CookingBook
 
         private void saveRecipe_Click(object sender, EventArgs e)
         {
-           form.recipes.Add(new Recipe(enterNameOfRecipe.Text, products, steps, int.Parse(enterLevelOfHard.Text), int.Parse(enterTimeOfPrep.Text)));
+           form.recipes.Add(new Recipe(enterNameOfRecipe.Text, products, steps, int.Parse(enterLevelOfHard.Text), int.Parse(enterTimeOfPrep.Text), enterCategory.Text));
             form.recipes[0].saveToFile(form.recipes);
             
             form.loadRecipe();

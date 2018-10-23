@@ -36,6 +36,7 @@
             this.timeOfPreparing = new System.Windows.Forms.Label();
             this.addNewRecipe = new System.Windows.Forms.Button();
             this.removeRecipe = new System.Windows.Forms.Button();
+            this.category = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listOfRecipe
@@ -83,7 +84,7 @@
             // 
             this.levelOfHard.AutoSize = true;
             this.levelOfHard.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.levelOfHard.Location = new System.Drawing.Point(997, 12);
+            this.levelOfHard.Location = new System.Drawing.Point(852, 9);
             this.levelOfHard.Name = "levelOfHard";
             this.levelOfHard.Size = new System.Drawing.Size(77, 30);
             this.levelOfHard.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             this.timeOfPreparing.AutoSize = true;
             this.timeOfPreparing.Font = new System.Drawing.Font("Microsoft Tai Le", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeOfPreparing.Location = new System.Drawing.Point(997, 42);
+            this.timeOfPreparing.Location = new System.Drawing.Point(852, 51);
             this.timeOfPreparing.Name = "timeOfPreparing";
             this.timeOfPreparing.Size = new System.Drawing.Size(77, 30);
             this.timeOfPreparing.TabIndex = 5;
@@ -121,11 +122,22 @@
             this.removeRecipe.UseVisualStyleBackColor = true;
             this.removeRecipe.Click += new System.EventHandler(this.removeRecipe_Click);
             // 
+            // category
+            // 
+            this.category.AutoSize = true;
+            this.category.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.category.Location = new System.Drawing.Point(430, 58);
+            this.category.Name = "category";
+            this.category.Size = new System.Drawing.Size(63, 23);
+            this.category.TabIndex = 8;
+            this.category.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 805);
+            this.Controls.Add(this.category);
             this.Controls.Add(this.removeRecipe);
             this.Controls.Add(this.addNewRecipe);
             this.Controls.Add(this.timeOfPreparing);
@@ -151,6 +163,7 @@
         private System.Windows.Forms.Label timeOfPreparing;
         private System.Windows.Forms.Button addNewRecipe;
         private System.Windows.Forms.Button removeRecipe;
+        private System.Windows.Forms.Label category;
     }
 }
 

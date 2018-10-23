@@ -19,8 +19,9 @@ namespace CookingBook
 
         public Recipe() { }
 
-        public Recipe(string n, List<Product> pr, List<string> str, int t, int l) {
+        public Recipe(string n, List<Product> pr, List<string> str, int t, int l, string cat) {
             nameOfDish = n; products = pr; stepsOfRecipe = str; timeForPreparing = t; levelOfHard = l;
+            category = cat;
         }
         
 
