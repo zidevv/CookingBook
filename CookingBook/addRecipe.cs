@@ -141,7 +141,7 @@ namespace CookingBook
             }
             if (pomWithCheck == 0)
             {
-                products.Add(new Product(enterNameOfProduct.Text, int.Parse(enterAmountOfProduct.Text), setCategoryOfAmount.Text));
+                products.Add(new Product(enterNameOfProduct.Text.ToLower(), int.Parse(enterAmountOfProduct.Text), setCategoryOfAmount.Text));
                 refreshListOfProduct(products);
                 clearTextForTheAddNewRecepie(this.enterProductPanel);
             }
@@ -257,10 +257,11 @@ namespace CookingBook
 
         private void saveRecipe_Click(object sender, EventArgs e)
         {
-           form.recipes.Add(new Recipe(enterNameOfRecipe.Text, products, steps, int.Parse(enterLevelOfHard.Text), int.Parse(enterTimeOfPrep.Text), enterCategory.Text));
-            form.recipes[0].saveToFile(form.recipes);
+           form.recipes.Add(new Recipe(enterNameOfRecipe.Text.ToLower(), products, steps, int.Parse(enterLevelOfHard.Text), int.Parse(enterTimeOfPrep.Text), enterCategory.Text));
+            form.r.saveToFile(form.recipes);
             
-            form.loadRecipe();
+            form.loadRecipe(form.recipes, form.isSearch);
+
             this.Close();
             
         }

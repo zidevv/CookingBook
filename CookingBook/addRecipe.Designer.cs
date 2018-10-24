@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.enterPanel1 = new System.Windows.Forms.Panel();
+            this.enterCategory = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.enterLevelOfHard = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.exitFromAddNewRecipe = new System.Windows.Forms.Button();
             this.nextStepOfEnterRecipe = new System.Windows.Forms.Button();
             this.backStepsOfAddNewRecipe = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.enterCategory = new System.Windows.Forms.ComboBox();
             this.enterPanel1.SuspendLayout();
             this.enterStepsPanel.SuspendLayout();
             this.enterProductPanel.SuspendLayout();
@@ -74,6 +74,31 @@
             this.enterPanel1.Name = "enterPanel1";
             this.enterPanel1.Size = new System.Drawing.Size(736, 462);
             this.enterPanel1.TabIndex = 0;
+            // 
+            // enterCategory
+            // 
+            this.enterCategory.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F);
+            this.enterCategory.FormattingEnabled = true;
+            this.enterCategory.Items.AddRange(new object[] {
+            "Sniadanie",
+            "Obiad",
+            "Kolacja",
+            "Drugie Sniadanie",
+            "Podwieczorek"});
+            this.enterCategory.Location = new System.Drawing.Point(12, 334);
+            this.enterCategory.Name = "enterCategory";
+            this.enterCategory.Size = new System.Drawing.Size(229, 34);
+            this.enterCategory.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 295);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(306, 27);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Wprowadz kategorie przepisu";
             // 
             // enterLevelOfHard
             // 
@@ -326,31 +351,6 @@
             this.backStepsOfAddNewRecipe.UseVisualStyleBackColor = true;
             this.backStepsOfAddNewRecipe.Click += new System.EventHandler(this.backStepsOfAddNewRecipe_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 295);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(306, 27);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Wprowadz kategorie przepisu";
-            // 
-            // enterCategory
-            // 
-            this.enterCategory.Font = new System.Drawing.Font("Microsoft Tai Le", 15.75F);
-            this.enterCategory.FormattingEnabled = true;
-            this.enterCategory.Items.AddRange(new object[] {
-            "Sniadanie",
-            "Obiad",
-            "Kolacja",
-            "Drugie Sniadanie",
-            "Podwieczorek"});
-            this.enterCategory.Location = new System.Drawing.Point(12, 334);
-            this.enterCategory.Name = "enterCategory";
-            this.enterCategory.Size = new System.Drawing.Size(229, 34);
-            this.enterCategory.TabIndex = 10;
-            // 
             // addRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,9 +359,9 @@
             this.Controls.Add(this.backStepsOfAddNewRecipe);
             this.Controls.Add(this.exitFromAddNewRecipe);
             this.Controls.Add(this.nextStepOfEnterRecipe);
+            this.Controls.Add(this.enterStepsPanel);
             this.Controls.Add(this.enterPanel1);
             this.Controls.Add(this.enterProductPanel);
-            this.Controls.Add(this.enterStepsPanel);
             this.Name = "addRecipe";
             this.Text = "Zapisz Nowy Przepis";
             this.enterPanel1.ResumeLayout(false);

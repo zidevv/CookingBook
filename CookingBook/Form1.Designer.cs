@@ -37,6 +37,8 @@
             this.addNewRecipe = new System.Windows.Forms.Button();
             this.removeRecipe = new System.Windows.Forms.Button();
             this.category = new System.Windows.Forms.Label();
+            this.searchRecipe = new System.Windows.Forms.Button();
+            this.clearSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listOfRecipe
@@ -53,10 +55,10 @@
             // listOfSteps
             // 
             this.listOfSteps.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.listOfSteps.Location = new System.Drawing.Point(435, 171);
+            this.listOfSteps.Location = new System.Drawing.Point(434, 210);
             this.listOfSteps.Name = "listOfSteps";
             this.listOfSteps.ReadOnly = true;
-            this.listOfSteps.Size = new System.Drawing.Size(639, 612);
+            this.listOfSteps.Size = new System.Drawing.Size(639, 578);
             this.listOfSteps.TabIndex = 1;
             this.listOfSteps.Text = "";
             // 
@@ -74,7 +76,7 @@
             // 
             this.listOfProducts.AutoSize = true;
             this.listOfProducts.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listOfProducts.Location = new System.Drawing.Point(236, 171);
+            this.listOfProducts.Location = new System.Drawing.Point(244, 207);
             this.listOfProducts.Name = "listOfProducts";
             this.listOfProducts.Size = new System.Drawing.Size(61, 23);
             this.listOfProducts.TabIndex = 3;
@@ -132,11 +134,35 @@
             this.category.TabIndex = 8;
             this.category.Text = "label1";
             // 
+            // searchRecipe
+            // 
+            this.searchRecipe.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchRecipe.Location = new System.Drawing.Point(235, 110);
+            this.searchRecipe.Name = "searchRecipe";
+            this.searchRecipe.Size = new System.Drawing.Size(189, 30);
+            this.searchRecipe.TabIndex = 9;
+            this.searchRecipe.Text = "Wyszukaj Przepisu";
+            this.searchRecipe.UseVisualStyleBackColor = true;
+            this.searchRecipe.Click += new System.EventHandler(this.searchRecipe_Click);
+            // 
+            // clearSearch
+            // 
+            this.clearSearch.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearSearch.Location = new System.Drawing.Point(235, 146);
+            this.clearSearch.Name = "clearSearch";
+            this.clearSearch.Size = new System.Drawing.Size(189, 30);
+            this.clearSearch.TabIndex = 10;
+            this.clearSearch.Text = "Wyczysc wyszukiwanie";
+            this.clearSearch.UseVisualStyleBackColor = true;
+            this.clearSearch.Click += new System.EventHandler(this.clearSearch_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 805);
+            this.Controls.Add(this.clearSearch);
+            this.Controls.Add(this.searchRecipe);
             this.Controls.Add(this.category);
             this.Controls.Add(this.removeRecipe);
             this.Controls.Add(this.addNewRecipe);
@@ -164,6 +190,8 @@
         private System.Windows.Forms.Button addNewRecipe;
         private System.Windows.Forms.Button removeRecipe;
         private System.Windows.Forms.Label category;
+        private System.Windows.Forms.Button searchRecipe;
+        private System.Windows.Forms.Button clearSearch;
     }
 }
 

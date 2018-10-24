@@ -15,13 +15,15 @@ namespace CookingBook
     {
         
         public List<Recipe> recipes = new List<Recipe>();
+        public bool isSearch = false;
         public Recipe r = new Recipe();
+        public List<Recipe> helpSearcher = new List<Recipe>();
         
         public Form1()
         {
             InitializeComponent();
             
-            loadRecipe();
+            loadRecipe(recipes, isSearch);
         }
 
         private void addNewRecipe_Click(object sender, EventArgs e)
@@ -30,52 +32,93 @@ namespace CookingBook
             form.Show();
         }
 
-        public void loadRecipe()
+        public void loadRecipe(List<Recipe> b, bool isSearch)
         {
-            recipes = r.readFromFile();
-            listOfRecipe.Items.Clear();
-            foreach(Recipe a in recipes)
+
+            if (!isSearch)
             {
-                listOfRecipe.Items.Add(a.nameOfDish);
-            }
-            if (listOfRecipe.Items.Count == 0)
-            {
-                nameOfRecipe.Text = "";
-                levelOfHard.Text = "";
-                timeOfPreparing.Text = "";
-                listOfProducts.Text = "";
-                listOfSteps.Text = "";
-                category.Text = "";
+                recipes = r.readFromFile();
+                listOfRecipe.Items.Clear();
+                foreach (Recipe a in recipes)
+                {
+                    listOfRecipe.Items.Add(a.nameOfDish);
+                }
+                if (listOfRecipe.Items.Count == 0)
+                {
+                    nameOfRecipe.Text = "";
+                    levelOfHard.Text = "";
+                    timeOfPreparing.Text = "";
+                    listOfProducts.Text = "";
+                    listOfSteps.Text = "";
+                    category.Text = "";
+                }
+                else
+                {
+                    showSelected(0, recipes);
+                }
             }
             else
             {
-                showSelected(0);
+                
+                listOfRecipe.Items.Clear();
+                foreach (Recipe a in b)
+                {
+                    if(a!=null) listOfRecipe.Items.Add(a.nameOfDish);
+                }
+                if (listOfRecipe.Items.Count == 0)
+                {
+                    nameOfRecipe.Text = "";
+                    levelOfHard.Text = "";
+                    timeOfPreparing.Text = "";
+                    listOfProducts.Text = "";
+                    listOfSteps.Text = "";
+                    category.Text = "";
+                }
+                else
+                {
+                    showSelected(0,b);
+                }
             }
+            
+                
+            
         }
 
-        public void showSelected(int selected)
+        public void showSelected(int selected, List<Recipe> a)
         {
-            nameOfRecipe.Text = recipes[selected].nameOfDish;
-            levelOfHard.Text = "Poziom trudności "+recipes[selected].levelOfHard.ToString();
-            timeOfPreparing.Text = "Czas "+recipes[selected].timeForPreparing.ToString()+" min";
-            string pomString = "";
-            foreach(Product p in recipes[selected].products)
+
+            if (selected >= 0 && selected < a.Count)
             {
-                pomString += p.name + " " + p.amount + "" + p.unit + "\n";
+                nameOfRecipe.Text = a[selected].nameOfDish;
+                levelOfHard.Text = "Poziom trudności " + a[selected].levelOfHard.ToString();
+                timeOfPreparing.Text = "Czas " + a[selected].timeForPreparing.ToString() + " min";
+                string pomString = "";
+                foreach (Product p in a[selected].products)
+                {
+                    pomString += p.name + " " + p.amount + "" + p.unit + "\n";
+                }
+                listOfProducts.Text = pomString;
+                pomString = "";
+                foreach (string p in a[selected].stepsOfRecipe)
+                {
+                    pomString += p + "\n\n";
+                }
+                listOfSteps.Text = pomString;
+                category.Text = a[selected].category;
             }
-            listOfProducts.Text = pomString;
-            pomString = "";
-            foreach (string p in recipes[selected].stepsOfRecipe)
-            {
-                pomString += p +"\n\n";
-            }
-            listOfSteps.Text = pomString;
-            category.Text = recipes[selected].category;
         }
+        
 
         private void listOfRecipe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            showSelected(listOfRecipe.SelectedIndex);
+            if (!isSearch)
+            {
+                showSelected(listOfRecipe.SelectedIndex, recipes);
+            }
+            else
+            {
+                showSelected(listOfRecipe.SelectedIndex, helpSearcher);
+            }
         }
 
         private void removeRecipe_Click(object sender, EventArgs e)
@@ -84,11 +127,26 @@ namespace CookingBook
             switch (dialog)
             {
                 case DialogResult.Yes:
-                    recipes.RemoveAt(listOfRecipe.SelectedIndex);
+                    recipes.Remove(recipes.Find(x => x.nameOfDish.Equals(listOfRecipe.Text)));
                     r.saveToFile(recipes);
-                    loadRecipe();
+                    isSearch = false;
+                    loadRecipe(recipes, isSearch);
+                    showSelected(0, recipes);
                     break;
             }
+        }
+
+        private void searchRecipe_Click(object sender, EventArgs e)
+        {
+            searchRecipe searchRecipeOpen = new searchRecipe(this);
+            searchRecipeOpen.Show();
+            isSearch = true;
+        }
+
+        private void clearSearch_Click(object sender, EventArgs e)
+        {
+            isSearch = false;
+            loadRecipe(recipes, isSearch);
         }
     }
 }
